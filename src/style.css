@@ -1,0 +1,5 @@
+@layer reset, main;
+
+@import "reset.css" layer(reset);
+
+@layer main {}
