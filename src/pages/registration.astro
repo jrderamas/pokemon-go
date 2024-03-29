@@ -3,5 +3,44 @@ import Base from "../layouts/Base.astro";
 ---
 
 <Base>
-  <h1>Registration</h1>
+  <div class="container">
+    <h1>Create Account</h1>
+    <form action="/profile" method="post" onsubmit="signInUser(event)">
+      <div>
+        <label for="ign">IGN</label>
+        <input type="text" name="ign" id="ign" required />
+      </div>
+      <div>
+        <label for="email">Email Address</label>
+        <input type="email" name="email" id="email" required />
+      </div>
+      <div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required />
+        </div>
+        <div>
+          <label for="passwordConfirmation">Confirm Password</label>
+          <input
+            type="password"
+            name="passwordConfirmation"
+            id="passwordConfirmation"
+            required
+          />
+        </div>
+      </div>
+      <button>Create Account</button>
+    </form>
+  </div>
 </Base>
+
+<script is:inline>
+  function signInUser(event) {
+    const { target } = event;
+
+    const formData = new FormData(target);
+    const user = Object.fromEntries(formData);
+
+    document.cookie = `user=${JSON.stringify(user)}`;
+  }
+</script>
