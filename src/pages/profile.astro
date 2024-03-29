@@ -3,7 +3,6 @@ import Base from "../layouts/Base.astro";
 
 const user = Astro.cookies.get("user")?.json();
 
-const dateNow = new Date();
 const dateYesterday = new Date(new Date().setDate(new Date().getDate() - 1));
 const dateOtherDay = new Date(new Date().setDate(new Date().getDate() - 2));
 
@@ -44,18 +43,6 @@ function getTransactionNumber(number: number) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{dateNow.toLocaleDateString()}</td>
-            <td>
-              <div>
-                <img src="/event.webp" alt="" />
-                <span>Pokémon GO Fest 2024: Global Ticket</span>
-              </div>
-            </td>
-            <td>ae06c34b-d518-4942-a69f-b38f9dcdc221</td>
-            <td>{getTransactionNumber(dateNow.getTime())}</td>
-            <td><span class="badge" data-status="purchase">Purchased</span></td>
-          </tr>
           <tr>
             <td>{dateYesterday.toLocaleDateString()}</td>
             <td>

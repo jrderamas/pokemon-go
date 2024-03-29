@@ -1,5 +1,6 @@
 ---
 import Cart from "../components/Cart.astro";
+import Payment from "../components/Payment.astro";
 
 const user = Astro.cookies.get("user");
 const hasUser = user !== undefined && user.value !== "";
@@ -52,6 +53,7 @@ const hasUser = user !== undefined && user.value !== "";
 </header>
 
 <Cart />
+<Payment />
 
 <script is:inline>
   function displayCart() {

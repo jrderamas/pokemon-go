@@ -1,0 +1,172 @@
+<div class="modal">
+  <section class="header">
+    <h2>Payment via credit or debit card</h2>
+    <button onclick="closeCart()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="1em"
+        height="1em"
+        viewBox="0 0 24 24"
+        ><path
+          fill="currentColor"
+          d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"
+        ></path>
+      </svg>
+    </button>
+  </section>
+  <form onsubmit="addItem(event)">
+    <div class="form__group">
+      <label for="cardNo">Card Number</label>
+      <input
+        type="text"
+        name="cardNo"
+        id="cardNo"
+        pattern="[0-9]{13,16}"
+        title="Please input a valid credit card number"
+        required
+      />
+    </div>
+    <div>
+      <div class="form__group">
+        <label for="mmyy">MM/YY</label>
+        <input
+          type="text"
+          name="mmyy"
+          id="mmyy"
+          pattern="(0[1-9]|1[0-2])\/([0-9]{2})"
+          title="Please enter a valid expiration date (MM/YY)"
+          required
+        />
+      </div>
+      <div class="form__group">
+        <label for="cvc">CVV2/CVC2</label>
+        <input
+          type="text"
+          name="cvc"
+          id="cvc"
+          pattern="[A-Za-z0-9]{3,4}"
+          title="Please enter a valid 3-digit CVC"
+        />
+      </div>
+    </div>
+    <div class="form__group">
+      <label for="billing">Billing Information</label>
+      <input type="email" name="billing" id="billing" />
+    </div>
+    <button>Checkout</button>
+  </form>
+</div>
+
+<script is:inline>
+  function closeCart() {
+    const overlay = document.querySelector(".overlay");
+    overlay.setAttribute("data-open", false);
+
+    const dialog = document.querySelector(".dialog");
+    dialog.setAttribute("data-open", false);
+
+    const modal = document.querySelector(".modal");
+    modal.setAttribute("data-open", false);
+
+    const body = document.body;
+    body.style.height = "unset";
+    body.style.overflowY = "unset";
+  }
+
+  function getTransactionNumber(number) {
+    return number
+      .toString()
+      .split("")
+      .reduce(
+        (previous, current, index) =>
+          index % 3 === 2 ? `${previous}${current}-` : `${previous}${current}`,
+        "",
+      );
+  }
+
+  function addItem(event) {
+    event.preventDefault();
+
+    const dateNow = new Date();
+    const uuid = crypto.randomUUID();
+
+    closeCart();
+
+    const tbody = document.querySelector("tbody");
+    if (!tbody) return;
+
+    tbody.insertAdjacentHTML(
+      "afterbegin",
+      `<td>${dateNow.toLocaleDateString()}</td><td><div><img src="/event.webp" alt="" /><span>Pokémon GO Fest 2024: Global Ticket</span></div></td><td>${uuid}</td><td>${getTransactionNumber(dateNow.getTime())}</td><td><span class="badge" data-status="purchase">Purchased</span></td>`,
+    );
+  }
+</script>
+
+<style scoped>
+  .modal {
+    display: none;
+    font-size: 2rem;
+  }
+
+  .modal[data-open="true"] {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: var(--slate);
+    z-index: 2;
+    width: clamp(30rem, 100svw, 40rem);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    div:not(.form__group) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 1rem;
+    }
+
+    button {
+      background: var(--teal); /* fallback for old browsers */
+      background: -webkit-linear-gradient(
+        to right,
+        var(--cyan),
+        var(--teal)
+      ); /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(
+        to right,
+        var(--cyan),
+        var(--teal)
+      ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      color: white;
+      padding-block: 1rem;
+      border-radius: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+  }
+
+  .form__group {
+    row-gap: 0.25rem;
+
+    input {
+      height: 100%;
+    }
+  }
+</style>

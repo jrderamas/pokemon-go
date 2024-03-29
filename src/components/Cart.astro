@@ -17,27 +17,17 @@
   </section>
   <section class="main">
     <article>
-      <img src="/newtrainerbox.webp" alt="" />
-      <h3>1x New Trainer Box</h3>
-      <span>$0.99</span>
-    </article>
-    <article>
-      <img src="/newtrainerbox.webp" alt="" />
-      <h3>1x Beginner Box</h3>
-      <span>$0.99</span>
-    </article>
-    <article>
-      <img src="/specialresearchticket.webp" alt="" />
-      <h3>1x Special Research Ticket</h3>
+      <img src="/event.webp" alt="" />
+      <h3>Pokémon GO Fest 2024: Global Ticket</h3>
       <span>$7.99</span>
     </article>
   </section>
   <section class="footer">
     <div class="total">
       TOTAL
-      <span>$9.97</span>
+      <span>$7.99</span>
     </div>
-    <button>Proceed to checkout</button>
+    <button type="button" onclick="displayModal()">Proceed to checkout</button>
   </section>
 </div>
 
@@ -49,9 +39,20 @@
     const dialog = document.querySelector(".dialog");
     dialog.setAttribute("data-open", false);
 
+    const modal = document.querySelector(".modal");
+    modal.setAttribute("data-open", false);
+
     const body = document.body;
     body.style.height = "unset";
     body.style.overflowY = "unset";
+  }
+
+  function displayModal() {
+    const dialog = document.querySelector(".dialog");
+    dialog.setAttribute("data-open", false);
+
+    const modal = document.querySelector(".modal");
+    modal.setAttribute("data-open", true);
   }
 </script>
 
