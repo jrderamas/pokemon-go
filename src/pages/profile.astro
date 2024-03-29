@@ -1,7 +1,193 @@
 ---
 import Base from "../layouts/Base.astro";
+
+const user = Astro.cookies.get("user")?.json();
+
+const dateNow = new Date();
+const dateYesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+const dateOtherDay = new Date(new Date().setDate(new Date().getDate() - 2));
+
+function getTransactionNumber(number: number) {
+  return number
+    .toString()
+    .split("")
+    .reduce(
+      (previous, current, index) =>
+        index % 3 === 2 ? `${previous}${current}-` : `${previous}${current}`,
+      "",
+    );
+}
 ---
 
 <Base>
-  <h1>Profile</h1>
+  <div class="container">
+    <h1>{user.ign} <span>#{user.playerId}</span></h1>
+    <section class="info">
+      <span>Level 1</span>
+      <span>Team Mystic</span>
+      <span>
+        <img src="/pokecoin.webp" alt="" />
+        0 PokéCoins
+      </span>
+    </section>
+    <hr />
+    <section>
+      <h2>Transactions</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Item</th>
+            <th>Order ID</th>
+            <th>Transaction Number</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{dateNow.toLocaleDateString()}</td>
+            <td>
+              <div>
+                <img src="/event.webp" alt="" />
+                <span>Pokémon GO Fest 2024: Global Ticket</span>
+              </div>
+            </td>
+            <td>ae06c34b-d518-4942-a69f-b38f9dcdc221</td>
+            <td>{getTransactionNumber(dateNow.getTime())}</td>
+            <td><span class="badge" data-status="purchase">Purchased</span></td>
+          </tr>
+          <tr>
+            <td>{dateYesterday.toLocaleDateString()}</td>
+            <td>
+              <div>
+                <img src="/wonderticket.webp" alt="" />
+                <span>Wonder Ticket</span>
+              </div>
+            </td>
+            <td>d64cb5cf-0d07-4557-aab6-6abf8b868623</td>
+            <td>{getTransactionNumber(dateYesterday.getTime())}</td>
+            <td><span class="badge" data-status="pending">Pending</span></td>
+          </tr>
+          <tr>
+            <td>{dateOtherDay.toLocaleDateString()}</td>
+            <td>
+              <div>
+                <img src="/rocketbox.webp" alt="" />
+                <span>GO Rocket Box</span>
+              </div>
+            </td>
+            <td>5e092fa3-666b-465e-aa99-e46f78294166</td>
+            <td>{getTransactionNumber(dateOtherDay.getTime())}</td>
+            <td><span class="badge" data-status="cancel">Cancelled</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
 </Base>
+
+<style scoped>
+  .container {
+    padding-block: 10rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+
+    span {
+      background-color: #334155;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      font-size: 2rem;
+    }
+  }
+
+  .info {
+    display: flex;
+    column-gap: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    span {
+      display: flex;
+      column-gap: 0.75rem;
+      align-items: center;
+    }
+  }
+
+  hr {
+    border: unset;
+    outline: 1px solid var(--neutral);
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  section:has(h2) {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    font-size: 1.5rem;
+
+    thead {
+      border-bottom: 1px solid var(--neutral);
+    }
+
+    th {
+      padding-block: 1rem;
+    }
+
+    td {
+      padding: 2rem;
+      text-align: center;
+
+      &:has(div) {
+        padding-inline: 4rem;
+      }
+
+      div {
+        display: flex;
+        column-gap: 2rem;
+        justify-content: flex-start;
+        align-items: center;
+
+        img {
+          height: 10rem;
+        }
+
+        span {
+          font-weight: bold;
+        }
+      }
+
+      .badge {
+        background-color: var(--color);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 1rem;
+
+        &[data-status="purchase"] {
+          --color: #22c55e;
+        }
+
+        &[data-status="pending"] {
+          --color: #eab308;
+        }
+
+        &[data-status="cancel"] {
+          --color: #ef4444;
+        }
+      }
+    }
+  }
+</style>

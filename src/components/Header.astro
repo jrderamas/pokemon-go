@@ -23,9 +23,6 @@ const hasUser = user !== undefined && user.value !== "";
       {
         hasUser ? (
           <>
-            <a href="/cart">Cart</a>
-            <a href="/payment">Payment</a>
-            <a href="/transaction">Transaction</a>
             <a href="/profile">Profile</a>
             <form action="/" method="post" onsubmit="signOutUser(event)">
               <button>Sign Out</button>

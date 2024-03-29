@@ -107,13 +107,13 @@ import Base from "../layouts/Base.astro";
 
     const formData = new FormData(form);
     const user = Object.fromEntries(formData);
-    const { password, passwordConfirmation } = user;
+    const { password, passwordConfirmation, ...rest } = user;
 
     if (password !== passwordConfirmation) {
       return location.replace("/registration");
     }
 
-    user.playerId = new Date()
+    const playerId = new Date()
       .getTime()
       .toString()
       .split("")
@@ -124,6 +124,9 @@ import Base from "../layouts/Base.astro";
       )
       .slice(0, 14);
 
-    document.cookie = `user=${JSON.stringify(user)}`;
+    document.cookie = `user=${JSON.stringify({
+      ...rest,
+      playerId,
+    })}`;
   }
 </script>
