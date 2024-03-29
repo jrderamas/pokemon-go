@@ -1,0 +1,153 @@
+<div class="overlay" onclick="closeCart()"></div>
+<div class="dialog">
+  <section class="header">
+    <h2>My Cart</h2>
+    <button onclick="closeCart()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="1em"
+        height="1em"
+        viewBox="0 0 24 24"
+        ><path
+          fill="currentColor"
+          d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"
+        ></path>
+      </svg>
+    </button>
+  </section>
+  <section class="main">
+    <article>
+      <img src="/newtrainerbox.webp" alt="" />
+      <h3>1x New Trainer Box</h3>
+      <span>$0.99</span>
+    </article>
+    <article>
+      <img src="/newtrainerbox.webp" alt="" />
+      <h3>1x Beginner Box</h3>
+      <span>$0.99</span>
+    </article>
+    <article>
+      <img src="/specialresearchticket.webp" alt="" />
+      <h3>1x Special Research Ticket</h3>
+      <span>$7.99</span>
+    </article>
+  </section>
+  <section class="footer">
+    <div class="total">
+      TOTAL
+      <span>$9.97</span>
+    </div>
+    <button>Proceed to checkout</button>
+  </section>
+</div>
+
+<script is:inline>
+  function closeCart() {
+    const overlay = document.querySelector(".overlay");
+    overlay.setAttribute("data-open", false);
+
+    const dialog = document.querySelector(".dialog");
+    dialog.setAttribute("data-open", false);
+
+    const body = document.body;
+    body.style.height = "unset";
+    body.style.overflowY = "unset";
+  }
+</script>
+
+<style scoped>
+  .overlay[data-open="true"] {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .dialog {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 30rem;
+    transform: translateX(30rem);
+    z-index: 2;
+    transition: transform 300ms ease-in-out;
+    background-color: var(--slate);
+    font-size: 2rem;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+
+    &[data-open="true"] {
+      transform: translateX(0);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+    }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+      flex-grow: 1;
+
+      article {
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        border-bottom: 1px solid var(--neutral);
+        padding-bottom: 1rem;
+
+        img {
+          width: 4.8rem;
+          height: 4.8rem;
+          border: 1px solid var(--neutral);
+          border-radius: 0.5rem;
+          padding: 0.5rem;
+        }
+
+        h3 {
+          flex-grow: 1;
+        }
+      }
+    }
+
+    .footer {
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+      font-size: 1.5rem;
+
+      .total {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--neutral);
+        padding-bottom: 1rem;
+      }
+
+      button {
+        background: var(--teal); /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+          to right,
+          var(--cyan),
+          var(--teal)
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+          to right,
+          var(--cyan),
+          var(--teal)
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        color: white;
+        padding-block: 1rem;
+        border-radius: 1rem;
+      }
+    }
+  }
+</style>
