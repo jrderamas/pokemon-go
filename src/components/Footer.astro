@@ -1,3 +1,67 @@
-<footer>footer</footer>
+<footer>
+  <div class="container">
+    <section class="group">
+      <img src="https://placehold.co/96x96" alt="" />
+      <h2>&lt;GROUP_NAME_HERE&gt;</h2>
+    </section>
+    <section>
+      <b>Disclaimer:</b>
+      All content and images used are
+      <a href="https://nianticlabs.com/?hl=en" target="_blank">Niantic's</a>.
+      <br />
+      This project is for
+      <strong>
+        educational purposes only and no copyright infringement is intended.
+      </strong>
+    </section>
+  </div>
+</footer>
 
-<style scoped></style>
+<style scoped>
+  footer {
+    font-size: 1.5rem;
+    background: var(--teal); /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      var(--cyan),
+      var(--teal)
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      var(--cyan),
+      var(--teal)
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding-block: 5rem;
+  }
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.5rem;
+
+    img {
+      height: 9.6rem;
+      width: 9.6rem;
+    }
+
+    h2 {
+      font-weight: bold;
+    }
+  }
+
+  a {
+    color: var(--link);
+
+    &:hover {
+      color: var(--link-hover);
+    }
+  }
+</style>

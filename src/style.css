@@ -2,4 +2,28 @@
 
 @import "reset.css" layer(reset);
 
-@layer main {}
+@layer main {
+  :root {
+    --neutral: #e5e5e5;
+    --teal: #0f766e;
+    --cyan: #0e7490;
+    --emerald: #ecfdf5;
+    --slate: #f8fafc;
+
+    --link: #22d3ee;
+    --link-hover: #06b6d4;
+
+    --width: clamp(320px, 100svw, 1280px); 
+
+    font-family: 'Lato', sans-serif;
+  }
+
+  main {
+    background-color: var(--emerald);
+  }
+
+  .container {
+    width: var(--width);
+    margin-inline: auto;
+  }
+}

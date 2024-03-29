@@ -3,5 +3,145 @@ import Base from "../layouts/Base.astro";
 ---
 
 <Base>
-	<h1>Landing Page</h1>
+	<section class="hero">
+		<h1>
+			15% discount for your first Web Store purchase on any item $9.99 or more!
+		</h1>
+	</section>
+	<div class="container">
+		<section class="grid">
+			<article class="highlight">
+				<div>
+					<h2>Pokémon GO Fest 2024: Global Ticket</h2>
+					<span>LIMITED-TIME ONLY</span>
+					<p>₱439.10</p>
+					<button>Buy</button>
+				</div>
+				<img src="/event.webp" alt="" />
+			</article>
+		</section>
+	</div>
+
+	<style scoped>
+		.hero {
+			height: 600px;
+			position: relative;
+			display: flex;
+			align-items: flex-end;
+			padding-bottom: 5rem;
+
+			&::before {
+				content: "";
+				background-image: url("/hero.webp");
+				position: absolute;
+				inset: 0;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			&::after {
+				content: "";
+				background-image: radial-gradient(transparent, hsla(0, 0%, 0%, 0.75));
+				position: absolute;
+				inset: 0;
+			}
+
+			h1 {
+				position: relative;
+				color: white;
+				font-size: 5rem;
+				font-weight: bold;
+				width: var(--width);
+				margin-inline: auto;
+				z-index: 1;
+				text-wrap: balance;
+			}
+		}
+
+		.container {
+			width: clamp(320px, 100svw, 1024px);
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			grid-template-rows: repeat(2, minmax(0, 20rem));
+			gap: 3rem;
+			padding-block: 10rem;
+
+			.highlight {
+				grid-column: span 3 / span 3;
+				grid-row: span 2 / span 2;
+				max-height: 100%;
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				align-items: center;
+				column-gap: 3rem;
+				background-image: linear-gradient(to bottom right, #fdf2f8, #fbcfe8);
+				border-radius: 2rem;
+				box-shadow:
+					0 4px 6px -1px #f9a8d4,
+					0 2px 4px -2px #f9a8d4;
+				padding: 2.5rem;
+				color: #334155;
+				font-weight: bold;
+
+				&:hover {
+					box-shadow:
+						0 10px 15px -3px #f9a8d4,
+						0 4px 6px -4px #f9a8d4;
+					cursor: pointer;
+				}
+
+				div {
+					display: flex;
+					flex-direction: column;
+					row-gap: 2rem;
+				}
+
+				h2 {
+					font-size: 3.5rem;
+					color: inherit;
+				}
+
+				span {
+					background-color: #f472b6;
+					align-self: flex-start;
+					padding: 0.75rem 1.5rem;
+					border-radius: 1rem;
+					font-size: 1.5rem;
+					color: white;
+					font-weight: bold;
+				}
+
+				p {
+					font-size: 2.5rem;
+				}
+
+				img {
+					width: 400px;
+					object-fit: contain;
+				}
+
+				button {
+					background: var(--teal); /* fallback for old browsers */
+					background: -webkit-linear-gradient(
+						to right,
+						var(--cyan),
+						var(--teal)
+					); /* Chrome 10-25, Safari 5.1-6 */
+					background: linear-gradient(
+						to right,
+						var(--cyan),
+						var(--teal)
+					); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+					padding: 1.25rem 5rem;
+					color: white;
+					font-size: 1.5rem;
+					border-radius: 1.5rem;
+					align-self: flex-start;
+				}
+			}
+		}
+	</style>
 </Base>

@@ -1,11 +1,47 @@
 <header>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/cart">cart</a>
-    <a href="/payment">payment</a>
-    <a href="/profile">profile</a>
-    <a href="/registration">registration</a>
-    <a href="/store">store</a>
-    <a href="/transaction">transaction</a>
-  </nav>
+  <div class="container">
+    <a href="/">
+      <img src="/pokemon-logo.webp" alt="Pokemon Logo" />
+    </a>
+    <nav>
+      <!-- <a href="/cart">cart</a> -->
+      <!-- <a href="/payment">payment</a> -->
+      <!-- <a href="/profile">profile</a> -->
+      <a href="/registration">Sign In</a>
+      <!-- <a href="/store">store</a> -->
+      <!-- <a href="/transaction">transaction</a> -->
+    </nav>
+  </div>
 </header>
+
+<style scoped>
+  header {
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--neutral);
+  }
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 2rem;
+  }
+
+  a[href="/registration"] {
+    background: var(--teal); /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      var(--cyan),
+      var(--teal)
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      var(--cyan),
+      var(--teal)
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+    padding: 1.25rem 2.5rem;
+    font-weight: bold;
+    border-radius: 1.5rem;
+  }
+</style>
