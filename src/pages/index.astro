@@ -236,6 +236,13 @@ import Base from "../layouts/Base.astro";
 					grid-column: span 2 / span 2;
 				}
 
+				&:hover {
+					box-shadow:
+						0 10px 15px -3px #94a3b8,
+						0 4px 6px -4px #94a3b8;
+					cursor: pointer;
+				}
+
 				article {
 					column-gap: 1.5rem;
 
@@ -298,6 +305,11 @@ import Base from "../layouts/Base.astro";
 
 				a {
 					all: unset;
+
+					&:hover {
+						all: unset;
+						cursor: pointer;
+					}
 
 					img {
 						width: 100%;

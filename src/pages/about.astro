@@ -1,0 +1,121 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base>
+  <div class="container">
+    <article>
+      <h1>About SERAAP</h1>
+      <p>
+        Welcome to SERAAP - a dynamic group of IT students passionate about
+        innovation and technology. At SERAAP, we specialize in enhancing the
+        Pokémon GO website, striving to elevate the gaming experience for
+        enthusiasts worldwide.
+      </p>
+    </article>
+    <article>
+      <h2>Our Mission</h2>
+      <p>
+        Our mission at SERAAP is to revolutionize the way players interact with
+        the Pokémon GO platform. Through our dedication to cutting-edge
+        technology and relentless pursuit of excellence, we aim to enrich the
+        gaming experience, fostering a vibrant community of trainers.
+      </p>
+    </article>
+    <article>
+      <h2>What We Do</h2>
+      <p>
+        At SERAAP, we are committed to pushing the boundaries of what's possible
+        within the Pokémon GO ecosystem. Through our projects, we seek to
+        enhance the functionality, accessibility, and overall enjoyment of the
+        game for players of all levels. Whether it's optimizing website
+        performance, implementing new features, or refining user interfaces, we
+        are constantly exploring new ways to elevate the Pokémon GO experience.
+      </p>
+    </article>
+    <article>
+      <h2>Our Approach</h2>
+      <p>
+        Innovation lies at the heart of everything we do at SERAAP. We believe
+        in a collaborative, iterative approach to problem-solving, where
+        experimentation and feedback drive continuous improvement. By staying at
+        the forefront of emerging technologies and industry trends, we ensure
+        that our solutions remain relevant and impactful in an ever-evolving
+        gaming landscape.
+      </p>
+    </article>
+    <article>
+      <h2>Get Involved</h2>
+      <p>
+        Are you passionate about Pokémon GO and eager to be part of our journey?
+        Whether you're a fellow student looking to contribute your skills or a
+        Pokémon enthusiast interested in our projects, we welcome you to join us
+        at SERAAP. Together, we can shape the future of gaming and create
+        unforgettable experiences for trainers around the world.
+      </p>
+    </article>
+    <article>
+      <p>
+        Thank you for visiting SERAAP. Let's embark on this adventure together!
+      </p>
+    </article>
+  </div>
+</Base>
+
+<style scoped>
+  .container {
+    display: grid;
+    gap: 5rem;
+    padding-block: 10rem;
+    text-wrap: balance;
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    @media screen and (min-width: 768px) {
+      &:has(h1) {
+        grid-column: span 2 / span 2;
+      }
+
+      &:has(p) {
+        grid-column: span 2 / span 2;
+      }
+
+      &:has(h2) {
+        grid-column: unset;
+      }
+    }
+  }
+
+  h1,
+  h2 {
+    font-weight: bold;
+    line-height: 100%;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: 5rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    line-height: 150%;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  article:last-of-type p {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+</style>

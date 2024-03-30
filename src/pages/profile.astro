@@ -132,6 +132,10 @@ function getTransactionNumber(number: number) {
     row-gap: 2rem;
     font-size: 1.5rem;
 
+    table {
+      width: 100%;
+    }
+
     thead {
       border-bottom: 1px solid var(--neutral);
     }
@@ -143,6 +147,7 @@ function getTransactionNumber(number: number) {
     td {
       padding: 2rem;
       text-align: center;
+      text-wrap: nowrap;
 
       &:has(div) {
         padding-inline: 4rem;
@@ -153,6 +158,11 @@ function getTransactionNumber(number: number) {
         column-gap: 2rem;
         justify-content: flex-start;
         align-items: center;
+        flex-direction: column;
+
+        @media screen and (min-width: 1440px) {
+          flex-direction: row;
+        }
 
         img {
           height: 10rem;
