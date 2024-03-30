@@ -36,16 +36,28 @@
 
   div {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     text-align: center;
     padding-block: 5rem;
+    row-gap: 5rem;
+
+    @media screen and (min-width: 1024px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   .group {
     display: flex;
     flex-direction: column;
     row-gap: 2.5rem;
+    align-items: center;
+
+    @media screen and (min-width: 1024px) {
+      align-items: flex-start;
+    }
 
     img {
       height: 9.6rem;

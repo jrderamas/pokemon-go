@@ -76,6 +76,7 @@ import Base from "../layouts/Base.astro";
 			display: flex;
 			align-items: flex-end;
 			padding-bottom: 5rem;
+			padding-inline: 2rem;
 
 			&::before {
 				content: "";
@@ -84,6 +85,7 @@ import Base from "../layouts/Base.astro";
 				inset: 0;
 				background-repeat: no-repeat;
 				background-size: cover;
+				background-position: center;
 			}
 
 			&::after {
@@ -96,12 +98,20 @@ import Base from "../layouts/Base.astro";
 			h1 {
 				position: relative;
 				color: white;
-				font-size: 5rem;
+				font-size: 3rem;
 				font-weight: bold;
 				width: var(--width);
 				margin-inline: auto;
 				z-index: 1;
 				text-wrap: balance;
+
+				@media screen and (min-width: 768px) {
+					font-size: 4rem;
+				}
+
+				@media screen and (min-width: 1024px) {
+					font-size: 5rem;
+				}
 			}
 		}
 
@@ -111,20 +121,32 @@ import Base from "../layouts/Base.astro";
 
 		.grid {
 			display: grid;
-			grid-template-columns: repeat(5, minmax(0, 1fr));
 			gap: 3rem;
 			padding-block: 10rem;
 
+			@media screen and (min-width: 768px) {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			@media screen and (min-width: 1440px) {
+				grid-template-columns: repeat(5, minmax(0, 1fr));
+			}
+
 			article {
 				display: grid;
-				grid-template-columns: repeat(2, minmax(0, 1fr));
 				align-items: center;
 				column-gap: 3rem;
+				flex-grow: 1;
+
+				@media screen and (min-width: 1440px) {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
 
 				div {
 					display: flex;
 					flex-direction: column;
 					row-gap: 2rem;
+					order: 1;
 				}
 
 				h2 {
@@ -149,6 +171,7 @@ import Base from "../layouts/Base.astro";
 				img {
 					width: 400px;
 					object-fit: contain;
+					justify-self: center;
 				}
 
 				button {
@@ -172,8 +195,6 @@ import Base from "../layouts/Base.astro";
 			}
 
 			.highlight {
-				grid-column: span 3 / span 3;
-				grid-row: span 2 / span 2;
 				max-height: 100%;
 				background-image: linear-gradient(to bottom right, #fdf2f8, #fbcfe8);
 				border-radius: 2rem;
@@ -184,6 +205,15 @@ import Base from "../layouts/Base.astro";
 				font-weight: bold;
 				display: flex;
 
+				@media screen and (min-width: 768px) {
+					grid-column: span 2 / span 2;
+				}
+
+				@media screen and (min-width: 1440px) {
+					grid-column: span 3 / span 3;
+					grid-row: span 2 / span 2;
+				}
+
 				&:hover {
 					box-shadow:
 						0 10px 15px -3px #f9a8d4,
@@ -193,7 +223,6 @@ import Base from "../layouts/Base.astro";
 			}
 
 			a:not(.highlight) {
-				grid-column: span 2 / span 2;
 				max-height: 100%;
 				background-image: linear-gradient(to bottom right, #e2e8f0, #cbd5e1);
 				border-radius: 2rem;
@@ -203,9 +232,16 @@ import Base from "../layouts/Base.astro";
 				padding: 2.5rem;
 				font-weight: bold;
 
+				@media screen and (min-width: 1440px) {
+					grid-column: span 2 / span 2;
+				}
+
 				article {
 					column-gap: 1.5rem;
-					grid-template-columns: 1fr 15rem;
+
+					@media screen and (min-width: 1440px) {
+						grid-template-columns: 15rem 1fr;
+					}
 
 					div {
 						row-gap: 1rem;
@@ -219,33 +255,52 @@ import Base from "../layouts/Base.astro";
 
 			.links {
 				display: grid;
-				grid-template-columns: 1fr 1fr;
-				grid-column: 2 / span 3;
 				background-image: linear-gradient(to bottom right, #06b6d4, #083344);
-				padding: 5rem;
+				padding: 2rem;
 				border-radius: 2rem;
 				color: white;
 
+				@media screen and (min-width: 768px) {
+					grid-column: span 2 / span 2;
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+					padding: 5rem;
+				}
+
+				@media screen and (min-width: 1440px) {
+					grid-column: 2 / span 3;
+				}
+
 				> img {
-					grid-row: span 2 / span 2;
+					display: none;
+
+					@media screen and (min-width: 768px) {
+						display: block;
+						grid-row: span 2 / span 2;
+					}
 				}
 
 				> p {
 					font-weight: bold;
 					font-size: 4rem;
 					text-align: center;
+					line-height: 100%;
 				}
 
 				.download {
-					flex-direction: row;
+					flex-direction: column;
 					justify-content: space-around;
 					column-gap: 1rem;
+
+					@media screen and (min-width: 768px) {
+						flex-direction: row;
+					}
 				}
 
 				a {
 					all: unset;
 
 					img {
+						width: 100%;
 						height: 4rem;
 					}
 				}

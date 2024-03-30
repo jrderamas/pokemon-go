@@ -27,6 +27,7 @@
   .container {
     width: var(--width);
     margin-inline: auto;
+    padding-inline: 2rem;
   }
 
   .form__group {
